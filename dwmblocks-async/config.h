@@ -14,7 +14,7 @@
 #define LEADING_DELIMITER 0
 
 // Control whether a trailing delimiter should be appended to the status.
-#define TRAILING_DELIMITER 0
+#define TRAILING_DELIMITER 1
 
 // Define blocks for the status feed as X(cmd, interval, signal).
 #define BLOCKS(X)   \
