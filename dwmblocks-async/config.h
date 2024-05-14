@@ -20,7 +20,6 @@
 #define BLOCKS(X)   \
 X("sb-volume", 1, 4)   \
 X("sb-internet", 5, 3) \
-X("sb-brightness", 1, 5)   \
 X("sb-battery", 5, 1)   \
 X("sb-date", 1, 2)      \
 
