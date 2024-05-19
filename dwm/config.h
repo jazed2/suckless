@@ -10,8 +10,8 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;        /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "JetBrainsMonoNF:pixelsize=18:antialias=true:autohint=true:style=Bold" };
-static const char dmenufont[]       = "JetBrainsMonoNF:size=10";
+static const char *fonts[]          = { "JetBrainsMonoNF:pixelsize=16:antialias=true:autohint=true:style=Bold" };
+static const char dmenufont[]       = "JetBrainsMonoNF:size=16";
 
 // Colors
 #include "colors.h" 
@@ -100,8 +100,6 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_4,                      3)
 	TAGKEYS(                        XK_5,                      4)
 	TAGKEYS(                        XK_6,                      5)
-	TAGKEYS(                        XK_7,                      6)
-	TAGKEYS(                        XK_8,                      7)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 };
 
