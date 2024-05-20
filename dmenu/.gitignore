@@ -1,2 +1,7 @@
 dmenu.c.orig
+dmenu.c.rej
+dmenu
+stest
+*.o
+config.h
 Makefile.orig
