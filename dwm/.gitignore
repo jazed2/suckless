@@ -1,4 +1,6 @@
+config.h
 config.def.h.orig
-dwm.c.orig
 config.def.h.rej
-config.def.h.20240512_0914
+dwm.c.orig
+dwm.c.rej
+*.o
