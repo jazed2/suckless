@@ -1,4 +1,4 @@
-static const char norm_fg[] = "#BBBBBB";
+static const char norm_fg[] = "#FFFFFF";
 static const char norm_bg[] = "#000000";
 static const char norm_border[] = "#000000";
 
