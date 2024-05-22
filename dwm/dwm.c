@@ -20,6 +20,7 @@
  *
  * To understand everything else, start reading main().
  */
+#include <csignal>
 #include <errno.h>
 #include <locale.h>
 #include <signal.h>
@@ -2610,7 +2611,6 @@ main(int argc, char *argv[])
 #endif /* __OpenBSD__ */
 	scan();
 	run();
-	if(restart) execvp(argv[0], argv);
 	cleanup();
 	XCloseDisplay(dpy);
 	return EXIT_SUCCESS;
