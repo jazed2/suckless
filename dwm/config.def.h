@@ -15,6 +15,7 @@ static const char dmenufont[]       = "JetBrainsMonoNF:size=16";
 
 // Colors
 #include "colors.h" 
+#include "exitdwm.c"
 
 /* tagging */
 static const char *tags[] = { " >_ ", " {} ", " www ", " art ", " sms ", " misc "};
@@ -71,7 +72,7 @@ static const char *statuscmd[] = { "/bin/sh", "-c", NULL, NULL };
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 //	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY,	                XK_Return, spawn,          {.v = termcmd } },
+//	{ MODKEY,	                XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -100,7 +101,8 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_4,                      3)
 	TAGKEYS(                        XK_5,                      4)
 	TAGKEYS(                        XK_6,                      5)
-	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	{ MODKEY|ShiftMask,             XK_q,      exitdwm,        {0} },
+	{ MODKEY|ControlMask|ShiftMask, XK_q,      quit,           {1} }, 
 };
 
 /* button definitions */
