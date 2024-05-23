@@ -5,3 +5,6 @@ stest
 *.o
 config.h
 Makefile.orig
+config.def.h.orig
+config.def.h.rej
+drw.c.orig
