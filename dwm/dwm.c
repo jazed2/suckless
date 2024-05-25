@@ -20,7 +20,6 @@
  *
  * To understand everything else, start reading main().
  */
-#include <csignal>
 #include <errno.h>
 #include <locale.h>
 #include <signal.h>
