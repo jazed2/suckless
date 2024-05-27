@@ -1557,6 +1557,9 @@ propertynotify(XEvent *e)
 void
 quit(const Arg *arg)
 {
+	if(arg->i) restart = 1;
+	running = 0;
+
 	// fix: reloading dwm keeps all the hidden clients hidden
 	Monitor *m;
 	Client *c;
@@ -1566,9 +1569,6 @@ quit(const Arg *arg)
 				if (c && HIDDEN(c)) showwin(c);
 		}
 	}
-
-	if(arg->i) restart = 1;
-	running = 0;
 }
 
 Monitor *
@@ -2787,6 +2787,7 @@ main(int argc, char *argv[])
 #endif /* __OpenBSD__ */
 	scan();
 	run();
+	if(restart) execvp(argv[0], argv);
 	cleanup();
 	XCloseDisplay(dpy);
 	return EXIT_SUCCESS;
