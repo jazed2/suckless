@@ -11,7 +11,7 @@ static const unsigned int systrayspacing = 10;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
 static const int showsystray        = 0;        /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 0;        /* 0 means bottom bar */
+static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "JetBrainsMonoNF:pixelsize=16:antialias=true:autohint=true:style=Bold" };
 static const char dmenufont[]       = "JetBrainsMonoNF:size=16";
 
@@ -20,8 +20,13 @@ static const char dmenufont[]       = "JetBrainsMonoNF:size=16";
 #include "exitdwm.c"
 
 /* tagging */
-static const char *tags[] = { " >_ ", " {} ", " www ", " art ", " sms ", " misc "};
+static const char *tags[] = { " >_ ", " www ", " sms ", " app "};
 
+// https://bit-calculator.com/bit-shift-calculator
+// bit shifting calcualtor. Imagine them as light switches, total nu: 9.  '1' represents ON state, 0 represents off
+// To turn on the second light switch all you need to do is change 000000001 to 000000010
+// To turn on more than one light switch, you can do 1<<2 | 1<<4, which means 000000100 or 000010000
+// To tun on all the light switches except for 5 (i.e. you want 111101111) you need to do binary substraction: ON state of 5 minus 1
 static const Rule rules[] = {
 	/*xprop(1):
 		WM_CLASS(STRING) = instance, class
@@ -29,7 +34,10 @@ static const Rule rules[] = {
 	*/	
 	/* class		  instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",		  NULL,       NULL,       0,            1,           -1 },
-	{ "firefox-esr",	  NULL,       NULL,       1<<2,         0,           -1 },
+	{ "firefox-esr",	  NULL,       NULL,       1<<1,         0,           -1 },
+	{ "Signal",		  NULL,       NULL,       1<<2,         0,           -1 },
+	{ "vesktop",		  NULL,       NULL,       1<<2,         0,           -1 },
+	{ "Alacritty",		  "floating", NULL,       0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -67,14 +75,11 @@ static const StatusCmd statuscmds[] = {
 	{ "sb-date", 2 },
 	{ "sb-internet", 3 },
 	{ "sb-volume", 4 },
-//	{ "sb-brightness", 5 },
 };
 static const char *statuscmd[] = { "/bin/sh", "-c", NULL, NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
-//	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-//	{ MODKEY,	                XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstackvis,  {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstackvis,  {.i = -1 } },
@@ -82,10 +87,9 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_k,      focusstackhid,  {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
-	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
-	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
-	{ MODKEY,                       XK_m,      zoom,           {0} },
-//	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
+	{ MODKEY|ControlMask,           XK_h,      setmfact,       {.f = -0.05} },
+	{ MODKEY|ControlMask,           XK_l,      setmfact,       {.f = +0.05} },
+	{ MODKEY,                       XK_z,      zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,	                XK_c,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
@@ -107,7 +111,6 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_3,                      2)
 	TAGKEYS(                        XK_4,                      3)
 	TAGKEYS(                        XK_5,                      4)
-	TAGKEYS(                        XK_6,                      5)
 	{ MODKEY|ShiftMask,             XK_q,      exitdwm,        {0} },
 	{ MODKEY|ControlMask|ShiftMask, XK_q,      quit,           {1} }, 
 };
