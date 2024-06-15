@@ -5,3 +5,4 @@ dwm.c.orig
 dwm.c.rej
 dwm
 *.o
+nohup.ot
